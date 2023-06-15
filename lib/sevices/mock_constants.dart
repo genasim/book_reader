@@ -10,6 +10,8 @@ const List<Widget> cards = [
   BookCard(),
 ];
 
+List<Widget> manyCards = List.generate(10, (index) => BookCard());
+
 const List<String> genres = [
   'Action',
   'Thriller',

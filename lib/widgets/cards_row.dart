@@ -16,14 +16,15 @@ class CardsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          EdgeInsets.only(top: defaultSize * 0.8, bottom: defaultSize * 1.5),
+      padding: EdgeInsets.only(
+          top: defaultSize * 0.8,
+          bottom: defaultSize * 1.5,
+          left: defaultSize * 1.5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding:
-                EdgeInsets.only(left: defaultSize * 2, bottom: defaultSize),
+            padding: EdgeInsets.only(bottom: defaultSize),
             child: Text(
               title,
               style: TextStyle(
@@ -48,7 +49,10 @@ class CardsRow extends StatelessWidget {
                   );
                 }
 
-                return const BookCard();
+                return Padding(
+                  padding: EdgeInsets.only(left: defaultSize * 0.5),
+                  child: const BookCard(),
+                );
               }),
             ),
           )

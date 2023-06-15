@@ -1,4 +1,4 @@
-import 'package:book_reader/sevices/constants.dart';
+import 'package:book_reader/sevices/mock_constants.dart';
 import 'package:book_reader/size_data.dart';
 import 'package:flutter/material.dart';
 

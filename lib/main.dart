@@ -1,4 +1,5 @@
 import 'package:book_reader/screens/home_screen.dart';
+import 'package:book_reader/screens/library_screen.dart';
 import 'package:book_reader/screens/login_screen.dart';
 import 'package:book_reader/size_data.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
           useMaterial3: true,
         ),
-        home: const HomeScreen(),
+        home: const LibraryScreen(),
       ),
     );
   }
