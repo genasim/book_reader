@@ -1,4 +1,5 @@
 import 'package:book_reader/sevices/mock_constants.dart';
+import 'package:book_reader/widgets/book_card.dart';
 import 'package:book_reader/widgets/cards_row.dart';
 import 'package:flutter/material.dart';
 
@@ -12,13 +13,12 @@ class LibraryScreen extends StatelessWidget {
     return Scaffold(
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CardsRow(title: 'Bookmarks', widgets: cards),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: defaultSize * 4),
+              padding: EdgeInsets.symmetric(vertical: defaultSize),
               child: Divider(
                 color: Theme.of(context).primaryColor,
                 height: defaultSize,
@@ -38,9 +38,18 @@ class LibraryScreen extends StatelessWidget {
             ),
             Center(
               child: Wrap(
-                  spacing: defaultSize,
-                  runSpacing: defaultSize,
-                  children: manyCards),
+                runSpacing: defaultSize * 0.6,
+                spacing: defaultSize * 0.6,
+                children: manyCards
+                    .map((e) => SizedBox(
+                          width: defaultSize * 8.5,
+                          child: const AspectRatio(
+                            aspectRatio: 2 / 3,
+                            child: BookCard(),
+                          ),
+                        ))
+                    .toList(),
+              ),
             ),
             SizedBox(height: defaultSize * 2)
           ],
