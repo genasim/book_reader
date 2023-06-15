@@ -1,3 +1,4 @@
+import 'package:book_reader/screens/details_screen.dart';
 import 'package:book_reader/screens/home_screen.dart';
 import 'package:book_reader/screens/library_screen.dart';
 import 'package:book_reader/screens/login_screen.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
           useMaterial3: true,
         ),
-        home: const LibraryScreen(),
+        home: const DetailsScreen(),
       ),
     );
   }

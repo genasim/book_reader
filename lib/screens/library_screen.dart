@@ -16,7 +16,7 @@ class LibraryScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CardsRow(title: 'Bookmarks', widgets: cards),
+            CardsRow(title: 'Bookmarks', widgets: cards),
             Padding(
               padding: EdgeInsets.symmetric(vertical: defaultSize * 4),
               child: Divider(
@@ -53,13 +53,10 @@ class LibraryScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {},
-              icon: SizedBox(
-                  width: defaultSize * 2,
-                  height: defaultSize * 2,
-                  child: Icon(
-                    Icons.more_horiz,
-                    size: defaultSize * 2,
-                  )))
+              icon: Icon(
+                Icons.more_horiz,
+                size: defaultSize * 2,
+              ))
         ],
       );
 }

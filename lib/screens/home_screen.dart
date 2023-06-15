@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-                const CardsRow(
+                CardsRow(
                   title: 'Your last reads ...',
                   widgets: cards,
                 ),
@@ -39,13 +39,10 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {},
-              icon: SizedBox(
-                  width: defaultSize * 2,
-                  height: defaultSize * 2,
-                  child: Icon(
-                    Icons.more_horiz,
-                    size: defaultSize * 2,
-                  )))
+              icon: Icon(
+                Icons.more_horiz,
+                size: defaultSize * 2,
+              ))
         ],
       );
 }

@@ -51,7 +51,13 @@ class CardsRow extends StatelessWidget {
 
                 return Padding(
                   padding: EdgeInsets.only(left: defaultSize * 0.5),
-                  child: const BookCard(),
+                  child: SizedBox(
+                    width: defaultSize * 8,
+                    child: const AspectRatio(
+                      aspectRatio: 8 / 12,
+                      child: BookCard(),
+                    ),
+                  ),
                 );
               }),
             ),
