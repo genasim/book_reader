@@ -1,11 +1,9 @@
-import 'package:book_reader/screens/details_screen.dart';
-import 'package:book_reader/screens/home_screen.dart';
-import 'package:book_reader/screens/library_screen.dart';
-import 'package:book_reader/screens/login_screen.dart';
-import 'package:book_reader/size_data.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'go_router_config.dart';
+import 'size_data.dart';
 
 void main() => runApp(
       DevicePreview(
@@ -30,7 +28,7 @@ class MyApp extends StatelessWidget {
           FocusManager.instance.primaryFocus?.unfocus();
         }
       },
-      child: MaterialApp(
+      child: MaterialApp.router(
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
         title: 'BookReader',
@@ -41,7 +39,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
           useMaterial3: true,
         ),
-        home: const LibraryScreen(),
+        routerConfig: goRouter,
       ),
     );
   }

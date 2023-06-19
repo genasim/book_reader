@@ -13,30 +13,34 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 GoRouter get goRouter {
-  _goRouter ??= GoRouter(navigatorKey: _rootNavigatorKey, routes: [
-    ShellRoute(
-      navigatorKey: _shellNavigatorKey,
-      routes: [
-        GoRoute(
-          path: '/',
-          builder: (context, state) => const HomeScreen(),
-        ),
-        GoRoute(
-          path: '/library',
-          builder: (context, state) => const LibraryScreen(),
-        ),
-      ],
-      builder: (context, state, child) => ScaffoldNavBar(child: child),
-    ),
-    GoRoute(
-      path: '/details',
-      builder: (context, state) => const DetailsScreen(),
-    ),
-    GoRoute(
-      path: '/login',
-      builder: (context, state) => const LoginScreen(),
-    )
-  ]);
+  _goRouter ??= GoRouter(
+    navigatorKey: _rootNavigatorKey,
+    initialLocation: '/',
+    routes: [
+      ShellRoute(
+        navigatorKey: _shellNavigatorKey,
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) => const HomeScreen(),
+          ),
+          GoRoute(
+            path: '/library',
+            builder: (context, state) => const LibraryScreen(),
+          ),
+        ],
+        builder: (context, state, child) => ScaffoldNavBar(child: child),
+      ),
+      GoRoute(
+        path: '/details',
+        builder: (context, state) => const DetailsScreen(),
+      ),
+      GoRoute(
+        path: '/login',
+        builder: (context, state) => const LoginScreen(),
+      )
+    ],
+  );
 
   return _goRouter!;
 }
