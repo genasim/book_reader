@@ -1,5 +1,6 @@
 import 'package:book_reader/widgets/book_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../size_data.dart';
 import '../widgets/book_description.dart';
@@ -11,7 +12,7 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: _buildAppBar(context),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -44,7 +45,7 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar() => AppBar(
+  AppBar _buildAppBar(BuildContext context) => AppBar(
         actions: [
           IconButton(
               onPressed: () {},
@@ -58,7 +59,7 @@ class DetailsScreen extends StatelessWidget {
           style: TextStyle(fontSize: defaultSize * 1.8),
         ),
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () => context.pop(),
             icon: Icon(
               Icons.arrow_back_ios,
               size: defaultSize * 2,
