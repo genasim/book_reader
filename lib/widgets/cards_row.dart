@@ -58,7 +58,7 @@ class CardsRow extends StatelessWidget {
                       aspectRatio: 8 / 12,
                       child: InkWell(
                           onTap: () => context.push('/details'),
-                          child: Ink(child: const BookCard())),
+                          child: const BookCard()),
                     ),
                   ),
                 );

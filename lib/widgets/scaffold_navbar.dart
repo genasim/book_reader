@@ -43,9 +43,9 @@ class ScaffoldNavBar extends StatelessWidget {
 
   void _onItemTapped(int index, BuildContext context) {
     return switch (index) {
-      0 => GoRouter.of(context).go('/'),
-      1 => GoRouter.of(context).go('/library'),
-      _ => GoRouter.of(context).go('/'),
+      0 => context.go('/'),
+      1 => context.go('/library'),
+      _ => context.go('/'),
     };
   }
 }

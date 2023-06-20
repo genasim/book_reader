@@ -15,10 +15,11 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 GoRouter get goRouter {
   _goRouter ??= GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/',
+    initialLocation: '/login',
     routes: [
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
+        builder: (context, state, child) => ScaffoldNavBar(child: child),
         routes: [
           GoRoute(
             path: '/',
@@ -29,10 +30,10 @@ GoRouter get goRouter {
             builder: (context, state) => const LibraryScreen(),
           ),
         ],
-        builder: (context, state, child) => ScaffoldNavBar(child: child),
       ),
       GoRoute(
         path: '/details',
+        parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const DetailsScreen(),
       ),
       GoRoute(
