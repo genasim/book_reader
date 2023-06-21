@@ -2,13 +2,18 @@ import 'package:book_reader/widgets/book_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../sevices/mock_constants.dart';
+import '../models/book.dart';
 import '../size_data.dart';
 import '../widgets/book_description.dart';
 import '../widgets/book_info.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({Key? key}) : super(key: key);
+  const DetailsScreen({
+    Key? key,
+    required this.book,
+  }) : super(key: key);
+
+  final Book book;
 
   @override
   Widget build(BuildContext context) {
@@ -26,20 +31,20 @@ class DetailsScreen extends StatelessWidget {
                   bottom: 0,
                   child: SizedBox(
                     width: defaultSize * 18,
-                    child: const AspectRatio(
+                    child: AspectRatio(
                       aspectRatio: 8 / 12,
-                      child: BookCard(book: book_mock),
+                      child: BookCard(book: book),
                     ),
                   ),
                 ),
                 Positioned(
                   right: 0,
                   top: defaultSize * 3,
-                  child: const BookInfo(),
+                  child: BookInfo(book: book),
                 ),
               ]),
             ),
-            const BookDescription(),
+            BookDescription(book: book),
           ],
         ),
       ),
@@ -56,7 +61,7 @@ class DetailsScreen extends StatelessWidget {
               ))
         ],
         title: Text(
-          'Book Title',
+          book.title,
           style: TextStyle(fontSize: defaultSize * 1.8),
         ),
         leading: IconButton(

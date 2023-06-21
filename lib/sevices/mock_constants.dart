@@ -26,4 +26,5 @@ const book_mock = Book(
   year: 1925,
   imageURL:
       'https://i0.wp.com/americanwritersmuseum.org/wp-content/uploads/2018/02/CK-3.jpg?resize=267%2C400&ssl=1',
+  genre: 'fantasy',
 );
