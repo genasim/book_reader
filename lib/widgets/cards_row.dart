@@ -56,9 +56,10 @@ class CardsRow extends StatelessWidget {
                   child: SizedBox(
                     width: defaultSize * 8,
                     child: AspectRatio(
-                      aspectRatio: 8 / 12,
+                      aspectRatio: 2 / 3,
                       child: InkWell(
-                          onTap: () => context.push('/details'),
+                          onTap: () =>
+                              context.push('/details', extra: book_mock),
                           child: const BookCard(book: book_mock)),
                     ),
                   ),

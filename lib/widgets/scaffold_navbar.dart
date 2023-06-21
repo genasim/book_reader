@@ -45,7 +45,7 @@ class ScaffoldNavBar extends StatelessWidget {
     return switch (index) {
       0 => context.go('/'),
       1 => context.go('/library'),
-      _ => context.go('/'),
+      _ => throw (Exception('Index $index doesn\'t exist in the Nav Bar')),
     };
   }
 }

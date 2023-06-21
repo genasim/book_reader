@@ -47,7 +47,8 @@ class LibraryScreen extends StatelessWidget {
                           child: AspectRatio(
                             aspectRatio: 2 / 3,
                             child: InkWell(
-                                onTap: () => context.push('/details'),
+                                onTap: () =>
+                                    context.push('/details', extra: book_mock),
                                 child: const BookCard(book: book_mock)),
                           ),
                         ))
