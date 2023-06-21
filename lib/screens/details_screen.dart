@@ -2,6 +2,7 @@ import 'package:book_reader/widgets/book_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../sevices/mock_constants.dart';
 import '../size_data.dart';
 import '../widgets/book_description.dart';
 import '../widgets/book_info.dart';
@@ -27,7 +28,7 @@ class DetailsScreen extends StatelessWidget {
                     width: defaultSize * 18,
                     child: const AspectRatio(
                       aspectRatio: 8 / 12,
-                      child: BookCard(),
+                      child: BookCard(book: book_mock),
                     ),
                   ),
                 ),

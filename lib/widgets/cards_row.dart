@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../sevices/mock_constants.dart';
 import '../size_data.dart';
 import 'book_card.dart';
 
@@ -58,7 +59,7 @@ class CardsRow extends StatelessWidget {
                       aspectRatio: 8 / 12,
                       child: InkWell(
                           onTap: () => context.push('/details'),
-                          child: const BookCard()),
+                          child: const BookCard(book: book_mock)),
                     ),
                   ),
                 );

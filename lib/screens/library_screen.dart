@@ -1,10 +1,10 @@
-import 'package:book_reader/sevices/mock_constants.dart';
-import 'package:book_reader/widgets/book_card.dart';
-import 'package:book_reader/widgets/cards_row.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../sevices/mock_constants.dart';
 import '../size_data.dart';
+import '../widgets/book_card.dart';
+import '../widgets/cards_row.dart';
 
 class LibraryScreen extends StatelessWidget {
   const LibraryScreen({Key? key}) : super(key: key);
@@ -48,7 +48,7 @@ class LibraryScreen extends StatelessWidget {
                             aspectRatio: 2 / 3,
                             child: InkWell(
                                 onTap: () => context.push('/details'),
-                                child: const BookCard()),
+                                child: const BookCard(book: book_mock)),
                           ),
                         ))
                     .toList(),
