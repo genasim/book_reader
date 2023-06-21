@@ -7,11 +7,9 @@ class BookCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Container(
-        color: Colors.amberAccent,
-        child: const Center(child: Text('Book Cover')),
-      ),
+    return Ink(
+      color: Colors.amberAccent,
+      child: const Center(child: Text('Book Cover')),
     );
   }
 }

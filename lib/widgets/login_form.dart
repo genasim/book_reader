@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../size_data.dart';
 
@@ -31,7 +32,7 @@ class LoginForm extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(bottom: defaultSize * 1.6),
           child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () => context.go('/'),
               child: SizedBox(
                 width: defaultSize * 8.5,
                 child: const Center(child: Text('Log in')),

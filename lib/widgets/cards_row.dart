@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../size_data.dart';
 import 'book_card.dart';
@@ -53,9 +54,11 @@ class CardsRow extends StatelessWidget {
                   padding: EdgeInsets.only(left: defaultSize * 0.5),
                   child: SizedBox(
                     width: defaultSize * 8,
-                    child: const AspectRatio(
+                    child: AspectRatio(
                       aspectRatio: 8 / 12,
-                      child: BookCard(),
+                      child: InkWell(
+                          onTap: () => context.push('/details'),
+                          child: const BookCard()),
                     ),
                   ),
                 );

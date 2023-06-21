@@ -2,6 +2,7 @@ import 'package:book_reader/sevices/mock_constants.dart';
 import 'package:book_reader/widgets/book_card.dart';
 import 'package:book_reader/widgets/cards_row.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../size_data.dart';
 
@@ -43,9 +44,11 @@ class LibraryScreen extends StatelessWidget {
                 children: manyCards
                     .map((e) => SizedBox(
                           width: defaultSize * 8.5,
-                          child: const AspectRatio(
+                          child: AspectRatio(
                             aspectRatio: 2 / 3,
-                            child: BookCard(),
+                            child: InkWell(
+                                onTap: () => context.push('/details'),
+                                child: const BookCard()),
                           ),
                         ))
                     .toList(),
