@@ -17,7 +17,7 @@ class LibraryScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CardsRow(title: 'Bookmarks', widgets: cards),
+            CardsRow(title: 'Bookmarks', books: books),
             Padding(
               padding: EdgeInsets.symmetric(vertical: defaultSize),
               child: Divider(

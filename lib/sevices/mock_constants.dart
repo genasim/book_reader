@@ -2,11 +2,10 @@ import 'package:book_reader/models/book.dart';
 import 'package:book_reader/widgets/book_card.dart';
 import 'package:flutter/material.dart';
 
-List<Widget> cards =
-    List.generate(6, (index) => const BookCard(book: book_mock));
-
 List<Widget> manyCards =
     List.generate(10, (index) => const BookCard(book: book_mock));
+
+List<Book> books = List.generate(6, (index) => book_mock);
 
 const List<String> genres = [
   'Action',
