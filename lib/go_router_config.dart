@@ -1,3 +1,4 @@
+import 'package:book_reader/models/book.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,7 +35,11 @@ GoRouter get goRouter {
       GoRoute(
         path: '/details',
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => const DetailsScreen(),
+        builder: (context, state) {
+          assert(state.extra is Book,
+              'Extra of type [Book] must be provided when navigating to \'/details\'');
+          return DetailsScreen(book: state.extra as Book);
+        },
       ),
       GoRoute(
         path: '/login',

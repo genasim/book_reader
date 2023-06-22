@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../models/book.dart';
 import '../size_data.dart';
 
 class BookInfo extends StatelessWidget {
   const BookInfo({
     super.key,
+    required this.book,
   });
+
+  final Book book;
 
   @override
   Widget build(BuildContext context) {
@@ -24,18 +28,18 @@ class BookInfo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'author ',
+            book.author,
             style: productTextStyle,
           ),
           Divider(thickness: defaultSize * 0.2),
           SizedBox(height: defaultSize * 4),
           Text(
-            'year',
+            book.year.toString(),
             style: productTextStyle,
           ),
           SizedBox(height: defaultSize),
           Text(
-            'genre',
+            book.genre,
             style: productTextStyle,
           ),
         ],

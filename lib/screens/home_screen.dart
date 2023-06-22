@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
           children: [
                 CardsRow(
                   title: 'Your last reads ...',
-                  widgets: cards,
+                  books: books,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: defaultSize * 4),
@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                 )
               ] +
               List.generate(genres.length,
-                  (index) => CardsRow(title: genres[index], widgets: cards)),
+                  (index) => CardsRow(title: genres[index], books: books)),
         ),
       ),
     );

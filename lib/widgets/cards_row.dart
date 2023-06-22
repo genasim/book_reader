@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../sevices/mock_constants.dart';
+import '../models/book.dart';
 import '../size_data.dart';
 import 'book_card.dart';
 
@@ -9,11 +9,11 @@ class CardsRow extends StatelessWidget {
   const CardsRow({
     super.key,
     required this.title,
-    required this.widgets,
+    required this.books,
   });
 
   final String title;
-  final List<Widget> widgets;
+  final List<Book> books;
 
   @override
   Widget build(BuildContext context) {
@@ -37,37 +37,37 @@ class CardsRow extends StatelessWidget {
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Row(
-              children: List.generate(widgets.length + 1, (index) {
-                if (index == widgets.length) {
-                  return Padding(
-                    padding: EdgeInsets.only(left: defaultSize * 0.5),
-                    child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.arrow_forward_ios,
-                          size: defaultSize * 4.5,
-                        )),
-                  );
-                }
-
-                return Padding(
-                  padding: EdgeInsets.only(left: defaultSize * 0.5),
-                  child: SizedBox(
-                    width: defaultSize * 8,
-                    child: AspectRatio(
-                      aspectRatio: 8 / 12,
-                      child: InkWell(
-                          onTap: () => context.push('/details'),
-                          child: const BookCard(book: book_mock)),
-                    ),
-                  ),
-                );
-              }),
-            ),
+            child: Row(children: _createRowElements(context)),
           )
         ],
       ),
     );
   }
+
+  List<Widget> _createRowElements(BuildContext context) {
+    return books
+        .map((book) => Padding(
+            padding: EdgeInsets.only(left: defaultSize * 0.5),
+            child: SizedBox(
+              width: defaultSize * 8,
+              child: AspectRatio(
+                aspectRatio: 2 / 3,
+                child: InkWell(
+                    onTap: () => context.push('/details', extra: book),
+                    child: BookCard(book: book)),
+              ),
+            )))
+        .toList(growable: true)
+      ..add(_arrowWidget);
+  }
 }
+
+final _arrowWidget = Padding(
+  padding: EdgeInsets.only(left: defaultSize * 0.5),
+  child: IconButton(
+      onPressed: () {},
+      icon: Icon(
+        Icons.arrow_forward_ios,
+        size: defaultSize * 4.5,
+      )),
+);

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../sevices/mock_constants.dart';
+import '../models/book.dart';
 import '../size_data.dart';
 
 class BookDescription extends StatelessWidget {
   const BookDescription({
     super.key,
+    required this.book,
   });
+
+  final Book book;
 
   @override
   Widget build(BuildContext context) {
@@ -36,20 +39,20 @@ class BookDescription extends StatelessWidget {
         children: [
           SizedBox(height: defaultSize * 2),
           Text(
-            textPlaceholder,
+            book.description,
             style: descriptionStyle,
             textAlign: TextAlign.justify,
           ),
           SizedBox(height: defaultSize * 4),
           ElevatedButton.icon(
             icon: const Icon(
-              Icons.shopping_cart,
+              Icons.book,
             ),
             onPressed: () {},
             label: SizedBox(
                 width: defaultSize * 30,
                 child: Text(
-                  'Add to cart!',
+                  'Start Reading!',
                   style: buttonTextStyle,
                   textAlign: TextAlign.center,
                 )),

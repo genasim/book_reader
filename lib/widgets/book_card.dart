@@ -12,8 +12,9 @@ class BookCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Ink.image(
-      image: NetworkImage(book.imageURL),
+    return FadeInImage.assetNetwork(
+      placeholder: 'assets/eclipse.gif',
+      image: book.imageURL,
     );
   }
 }
