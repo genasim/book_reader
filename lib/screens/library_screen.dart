@@ -41,15 +41,15 @@ class LibraryScreen extends StatelessWidget {
               child: Wrap(
                 runSpacing: defaultSize * 0.6,
                 spacing: defaultSize * 0.6,
-                children: manyCards
-                    .map((e) => SizedBox(
+                children: manyBooks
+                    .map((book) => SizedBox(
                           width: defaultSize * 8.5,
                           child: AspectRatio(
                             aspectRatio: 2 / 3,
                             child: InkWell(
                                 onTap: () =>
-                                    context.push('/details', extra: book_mock),
-                                child: const BookCard(book: book_mock)),
+                                    context.push('/details', extra: book),
+                                child: BookCard(book: book)),
                           ),
                         ))
                     .toList(),

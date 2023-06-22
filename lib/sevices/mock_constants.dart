@@ -1,11 +1,8 @@
-import 'package:book_reader/models/book.dart';
-import 'package:book_reader/widgets/book_card.dart';
-import 'package:flutter/material.dart';
-
-List<Widget> manyCards =
-    List.generate(10, (index) => const BookCard(book: book_mock));
+import '../models/book.dart';
 
 List<Book> books = List.generate(6, (index) => book_mock);
+
+List<Book> manyBooks = List.generate(10, (index) => book_mock);
 
 const List<String> genres = [
   'Action',
@@ -26,4 +23,5 @@ const book_mock = Book(
   imageURL:
       'https://i0.wp.com/americanwritersmuseum.org/wp-content/uploads/2018/02/CK-3.jpg?resize=267%2C400&ssl=1',
   genre: 'fantasy',
+  description: textPlaceholder,
 );

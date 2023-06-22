@@ -45,19 +45,19 @@ class CardsRow extends StatelessWidget {
   }
 
   List<Widget> _createRowElements(BuildContext context) {
-    return books.map((book) {
-      return Padding(
-          padding: EdgeInsets.only(left: defaultSize * 0.5),
-          child: SizedBox(
-            width: defaultSize * 8,
-            child: AspectRatio(
-              aspectRatio: 2 / 3,
-              child: InkWell(
-                  onTap: () => context.push('/details', extra: book),
-                  child: BookCard(book: book)),
-            ),
-          ));
-    }).toList(growable: true)
+    return books
+        .map((book) => Padding(
+            padding: EdgeInsets.only(left: defaultSize * 0.5),
+            child: SizedBox(
+              width: defaultSize * 8,
+              child: AspectRatio(
+                aspectRatio: 2 / 3,
+                child: InkWell(
+                    onTap: () => context.push('/details', extra: book),
+                    child: BookCard(book: book)),
+              ),
+            )))
+        .toList(growable: true)
       ..add(_arrowWidget);
   }
 }
