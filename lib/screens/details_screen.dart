@@ -56,9 +56,18 @@ class DetailsScreen extends StatelessWidget {
           IconButton(
               onPressed: () {},
               icon: Icon(
-                Icons.more_horiz,
+                Icons.bookmark_add,
                 size: defaultSize * 2,
-              ))
+              )),
+          PopupMenuButton(
+            icon: Icon(
+              Icons.more_horiz,
+              size: defaultSize * 2,
+            ),
+            itemBuilder: (context) => [
+              PopupMenuItem(onTap: () {}, child: const Text('Settings')),
+            ],
+          ),
         ],
         title: Text(
           book.title,

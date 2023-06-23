@@ -64,12 +64,15 @@ class LibraryScreen extends StatelessWidget {
 
   AppBar _buildAppBar() => AppBar(
         actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.more_horiz,
-                size: defaultSize * 2,
-              ))
+          PopupMenuButton(
+            icon: Icon(
+              Icons.more_horiz,
+              size: defaultSize * 2,
+            ),
+            itemBuilder: (context) => [
+              PopupMenuItem(onTap: () {}, child: const Text('Settings')),
+            ],
+          ),
         ],
       );
 }
