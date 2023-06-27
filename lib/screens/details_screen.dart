@@ -1,5 +1,7 @@
+import 'package:book_reader/repositories/bookmarks_repository.dart';
 import 'package:book_reader/widgets/book_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../models/book.dart';
@@ -7,7 +9,7 @@ import '../size_data.dart';
 import '../widgets/book_description.dart';
 import '../widgets/book_info.dart';
 
-class DetailsScreen extends StatelessWidget {
+class DetailsScreen extends ConsumerStatefulWidget {
   const DetailsScreen({
     Key? key,
     required this.book,
@@ -16,9 +18,18 @@ class DetailsScreen extends StatelessWidget {
   final Book book;
 
   @override
+  ConsumerState<DetailsScreen> createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends ConsumerState<DetailsScreen> {
+  bool isBookmarked = false;
+
+  @override
   Widget build(BuildContext context) {
+    ref.watch(bookmarksProvider);
+
     return Scaffold(
-      appBar: _buildAppBar(context),
+      appBar: _buildAppBar(context, book: widget.book),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -33,51 +44,57 @@ class DetailsScreen extends StatelessWidget {
                     width: defaultSize * 18,
                     child: AspectRatio(
                       aspectRatio: 8 / 12,
-                      child: BookCard(book: book),
+                      child: BookCard(book: widget.book),
                     ),
                   ),
                 ),
                 Positioned(
                   right: 0,
                   top: defaultSize * 3,
-                  child: BookInfo(book: book),
+                  child: BookInfo(book: widget.book),
                 ),
               ]),
             ),
-            BookDescription(book: book),
+            BookDescription(book: widget.book),
           ],
         ),
       ),
     );
   }
 
-  AppBar _buildAppBar(BuildContext context) => AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.bookmark_add,
-                size: defaultSize * 2,
-              )),
-          PopupMenuButton(
+  AppBar _buildAppBar(BuildContext context, {required Book book}) {
+    final bookmarks = ref.read(bookmarksProvider);
+    isBookmarked = bookmarks.contains(book);
+
+    return AppBar(
+      actions: [
+        IconButton(
+            onPressed: () => setState(() => isBookmarked =
+                ref.read(bookmarksProvider.notifier).toggle(book)),
             icon: Icon(
-              Icons.more_horiz,
-              size: defaultSize * 2,
-            ),
-            itemBuilder: (context) => [
-              PopupMenuItem(onTap: () {}, child: const Text('Settings')),
-            ],
-          ),
-        ],
-        title: Text(
-          book.title,
-          style: TextStyle(fontSize: defaultSize * 1.8),
-        ),
-        leading: IconButton(
-            onPressed: () => context.pop(),
-            icon: Icon(
-              Icons.arrow_back_ios,
+              isBookmarked ? Icons.bookmark_add : Icons.bookmark_add_outlined,
               size: defaultSize * 2,
             )),
-      );
+        PopupMenuButton(
+          icon: Icon(
+            Icons.more_horiz,
+            size: defaultSize * 2,
+          ),
+          itemBuilder: (context) => [
+            PopupMenuItem(onTap: () {}, child: const Text('Settings')),
+          ],
+        ),
+      ],
+      title: Text(
+        widget.book.title,
+        style: TextStyle(fontSize: defaultSize * 1.8),
+      ),
+      leading: IconButton(
+          onPressed: () => context.pop(),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            size: defaultSize * 2,
+          )),
+    );
+  }
 }

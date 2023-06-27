@@ -1,4 +1,6 @@
+import 'package:book_reader/repositories/bookmarks_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../sevices/mock_constants.dart';
@@ -6,18 +8,18 @@ import '../size_data.dart';
 import '../widgets/book_card.dart';
 import '../widgets/cards_row.dart';
 
-class LibraryScreen extends StatelessWidget {
+class LibraryScreen extends ConsumerWidget {
   const LibraryScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CardsRow(title: 'Bookmarks', books: books),
+            CardsRow(title: 'Bookmarks', books: ref.read(bookmarksProvider)),
             Padding(
               padding: EdgeInsets.symmetric(vertical: defaultSize),
               child: Divider(
