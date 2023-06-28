@@ -1,9 +1,11 @@
+import 'package:book_reader/providers/library_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/book.dart';
 import '../size_data.dart';
 
-class BookDescription extends StatelessWidget {
+class BookDescription extends ConsumerWidget {
   const BookDescription({
     super.key,
     required this.book,
@@ -12,7 +14,7 @@ class BookDescription extends StatelessWidget {
   final Book book;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final descriptionStyle = TextStyle(
       fontSize: defaultSize * 1.2,
       height: 1.6,
@@ -48,7 +50,9 @@ class BookDescription extends StatelessWidget {
             icon: const Icon(
               Icons.book,
             ),
-            onPressed: () {},
+            onPressed: () {
+              ref.read(libraryNotifier.notifier).toggle(book);
+            },
             label: SizedBox(
                 width: defaultSize * 30,
                 child: Text(
