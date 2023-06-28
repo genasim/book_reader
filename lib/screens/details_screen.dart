@@ -65,15 +65,6 @@ class DetailsScreen extends ConsumerWidget {
               isBookmarked ? Icons.bookmark_add : Icons.bookmark_add_outlined,
               size: defaultSize * 2,
             )),
-        PopupMenuButton(
-          icon: Icon(
-            Icons.more_horiz,
-            size: defaultSize * 2,
-          ),
-          itemBuilder: (context) => [
-            PopupMenuItem(onTap: () {}, child: const Text('Settings')),
-          ],
-        ),
       ],
       title: Text(
         book.title,
