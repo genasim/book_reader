@@ -1,11 +1,11 @@
-import 'package:book_reader/repositories/bookmarks_provider.dart';
-import 'package:book_reader/widgets/book_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../models/book.dart';
+import '../providers/bookmarks_provider.dart';
 import '../size_data.dart';
+import '../widgets/book_card.dart';
 import '../widgets/book_description.dart';
 import '../widgets/book_info.dart';
 

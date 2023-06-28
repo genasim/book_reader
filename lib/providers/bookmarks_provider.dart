@@ -1,7 +1,7 @@
-import 'package:book_reader/repositories/repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/book.dart';
+import 'repository_provider.dart';
 
 class BookmarksNotifier extends StateNotifier<List<Book>> {
   BookmarksNotifier({required Repository repository})

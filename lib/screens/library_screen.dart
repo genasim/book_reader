@@ -1,9 +1,8 @@
-import 'package:book_reader/models/book.dart';
-import 'package:book_reader/repositories/bookmarks_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../providers/bookmarks_provider.dart';
 import '../sevices/mock_constants.dart';
 import '../size_data.dart';
 import '../widgets/book_card.dart';
