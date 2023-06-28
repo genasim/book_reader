@@ -1,4 +1,5 @@
-import 'package:book_reader/repositories/bookmarks_repository.dart';
+import 'package:book_reader/models/book.dart';
+import 'package:book_reader/repositories/bookmarks_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -19,7 +20,7 @@ class LibraryScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CardsRow(title: 'Bookmarks', books: ref.read(bookmarksProvider)),
+            CardsRow(title: 'Bookmarks', books: ref.read(bookmarksNotifier)),
             Padding(
               padding: EdgeInsets.symmetric(vertical: defaultSize),
               child: Divider(
