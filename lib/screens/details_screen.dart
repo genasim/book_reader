@@ -1,3 +1,4 @@
+import 'package:book_reader/providers/library_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -55,14 +56,28 @@ class DetailsScreen extends ConsumerWidget {
 
   AppBar _buildAppBar(BuildContext context, WidgetRef ref,
       {required Book book}) {
-    bool isBookmarked = ref.watch(bookmarksNotifier).contains(book);
+    bool isFavorite = ref.watch(bookmarksNotifier).contains(book);
+    bool isInLibrary = ref.watch(libraryNotifier).contains(book);
 
     return AppBar(
       actions: [
         IconButton(
-            onPressed: () => ref.read(bookmarksNotifier.notifier).toggle(book),
+            onPressed: () {
+              ref.read(bookmarksNotifier.notifier).toggle(book);
+              if (isInLibrary == false) {
+                ref.read(libraryNotifier.notifier).toggle(book);
+              }
+            },
             icon: Icon(
-              isBookmarked ? Icons.bookmark_add : Icons.bookmark_add_outlined,
+              isFavorite
+                  ? Icons.favorite_rounded
+                  : Icons.favorite_border_rounded,
+              size: defaultSize * 2,
+            )),
+        IconButton(
+            onPressed: () => ref.read(libraryNotifier.notifier).toggle(book),
+            icon: Icon(
+              isInLibrary ? Icons.bookmark_add : Icons.bookmark_add_outlined,
               size: defaultSize * 2,
             )),
       ],
