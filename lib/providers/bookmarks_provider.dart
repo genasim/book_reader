@@ -7,16 +7,16 @@ class BookmarksNotifier extends StateNotifier<List<Book>> {
   BookmarksNotifier({required Repository repository})
       : super(repository.bookmarks);
 
-  bool toggle(Book book) {
+  void toggle(Book book) {
     final tempList = List<Book>.from(state, growable: true);
 
-    if (state.contains(book)) {
-      state = tempList..remove(book);
-      return false;
+    if (tempList.contains(book)) {
+      tempList.remove(book);
+    } else {
+      tempList.add(book);
     }
 
-    state = tempList..add(book);
-    return true;
+    state = List.from(tempList, growable: false);
   }
 }
 
