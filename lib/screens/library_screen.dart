@@ -18,7 +18,8 @@ class LibraryScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CardsRow(title: 'Bookmarks', books: ref.watch(bookmarksNotifier)),
+            if (ref.read(bookmarksNotifier).isNotEmpty)
+              CardsRow(title: 'Bookmarks', books: ref.watch(bookmarksNotifier)),
             Padding(
               padding: EdgeInsets.symmetric(vertical: defaultSize),
               child: Divider(
