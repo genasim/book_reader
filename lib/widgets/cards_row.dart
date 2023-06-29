@@ -5,6 +5,8 @@ import '../models/book.dart';
 import '../size_data.dart';
 import 'book_card.dart';
 
+const int ROW_ITEMS_THRESHOLD = 10;
+
 class CardsRow extends StatelessWidget {
   const CardsRow({
     super.key,
@@ -37,15 +39,15 @@ class CardsRow extends StatelessWidget {
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Row(children: _createRowElements(context)),
+            child: Row(children: _buildRowElements(context)),
           )
         ],
       ),
     );
   }
 
-  List<Widget> _createRowElements(BuildContext context) {
-    return books
+  List<Widget> _buildRowElements(BuildContext context) {
+    final elements = books
         .map((book) => Padding(
             padding: EdgeInsets.only(left: defaultSize * 0.5),
             child: SizedBox(
@@ -57,8 +59,17 @@ class CardsRow extends StatelessWidget {
                     child: BookCard(book: book)),
               ),
             )))
-        .toList(growable: true)
-      ..add(_arrowWidget);
+        .toList(growable: true);
+
+    return _processElements(elements);
+  }
+
+  List<Widget> _processElements(List<Widget> elements) {
+    if (elements.length > ROW_ITEMS_THRESHOLD) {
+      return elements.sublist(0, ROW_ITEMS_THRESHOLD)..add(_arrowWidget);
+    }
+
+    return elements;
   }
 }
 
