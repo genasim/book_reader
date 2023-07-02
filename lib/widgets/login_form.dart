@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../providers/firebase_providers.dart';
 import '../size_data.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends ConsumerWidget {
   const LoginForm({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -32,7 +33,9 @@ class LoginForm extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(bottom: defaultSize * 1.6),
           child: ElevatedButton(
-              onPressed: () => context.go('/'),
+              onPressed: () {
+                ref.read(authProvider).signInAnon();
+              },
               child: SizedBox(
                 width: defaultSize * 8.5,
                 child: const Center(child: Text('Log in')),

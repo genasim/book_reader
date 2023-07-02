@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/bookmarks_provider.dart';
+import '../providers/firebase_providers.dart';
 import '../providers/library_provider.dart';
 import '../size_data.dart';
 import '../widgets/cards_row.dart';
@@ -13,7 +14,7 @@ class LibraryScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: _buildAppBar(ref),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +37,7 @@ class LibraryScreen extends ConsumerWidget {
     );
   }
 
-  AppBar _buildAppBar() => AppBar(
+  AppBar _buildAppBar(WidgetRef ref) => AppBar(
         actions: [
           PopupMenuButton(
             icon: Icon(
@@ -44,7 +45,14 @@ class LibraryScreen extends ConsumerWidget {
               size: defaultSize * 2,
             ),
             itemBuilder: (context) => [
-              PopupMenuItem(onTap: () {}, child: const Text('Settings')),
+              PopupMenuItem(
+                onTap: () => ref.read(authProvider).signOut(),
+                child: const Text('Sign out'),
+              ),
+              PopupMenuItem(
+                onTap: () {},
+                child: const Text('Settings'),
+              ),
             ],
           ),
         ],

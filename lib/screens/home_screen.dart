@@ -1,16 +1,18 @@
-import 'package:book_reader/sevices/mock_constants.dart';
-import 'package:book_reader/size_data.dart';
+import 'package:book_reader/providers/firebase_providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../sevices/mock_constants.dart';
+import '../size_data.dart';
 import '../widgets/cards_row.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: _buildAppBar(ref),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +37,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar() => AppBar(
+  AppBar _buildAppBar(WidgetRef ref) => AppBar(
         actions: [
           PopupMenuButton(
             icon: Icon(
@@ -43,7 +45,14 @@ class HomeScreen extends StatelessWidget {
               size: defaultSize * 2,
             ),
             itemBuilder: (context) => [
-              PopupMenuItem(onTap: () {}, child: const Text('Settings')),
+              PopupMenuItem(
+                onTap: () => ref.read(authProvider).signOut(),
+                child: const Text('Sign out'),
+              ),
+              PopupMenuItem(
+                onTap: () {},
+                child: const Text('Settings'),
+              ),
             ],
           ),
         ],
