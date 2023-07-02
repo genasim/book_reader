@@ -39,10 +39,10 @@ dependencies:
   flutter_svg: ^0.21.0 # For better SVG use
   google_fonts: ^2.0.0
   http: ^0.13.0
-  provider: ^6.0.5 
   device_preview: 1.1.0
   go_router: ^8.0.5
   flutter_riverpod: ^2.3.6
+  firebase_core: ^2.14.0
 
 dev_dependencies:
   flutter_test:
