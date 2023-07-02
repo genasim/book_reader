@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 class AuthService {
   late final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -55,7 +56,9 @@ class AuthService {
     try {
       await _auth.signOut();
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 }

@@ -5,6 +5,7 @@ import '../models/book.dart';
 import '../size_data.dart';
 import 'book_card.dart';
 
+// ignore: constant_identifier_names
 const int ROW_ITEMS_THRESHOLD = 10;
 
 class CardsRow extends StatelessWidget {
