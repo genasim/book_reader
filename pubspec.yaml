@@ -43,6 +43,7 @@ dependencies:
   go_router: ^8.0.5
   flutter_riverpod: ^2.3.6
   firebase_core: ^2.14.0
+  firebase_auth: ^4.6.3
 
 dev_dependencies:
   flutter_test:

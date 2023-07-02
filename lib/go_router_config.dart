@@ -1,11 +1,11 @@
-import 'package:book_reader/models/book.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'models/book.dart';
+import 'screens/auth_screen.dart';
 import 'screens/details_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/library_screen.dart';
-import 'screens/login_screen.dart';
 import 'widgets/scaffold_navbar.dart';
 
 GoRouter? _goRouter;
@@ -16,7 +16,7 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 GoRouter get goRouter {
   _goRouter ??= GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/login',
+    initialLocation: '/auth',
     routes: [
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
@@ -42,8 +42,8 @@ GoRouter get goRouter {
         },
       ),
       GoRoute(
-        path: '/login',
-        builder: (context, state) => const LoginScreen(),
+        path: '/auth',
+        builder: (context, state) => const AuthScreen(),
       )
     ],
   );

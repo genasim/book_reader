@@ -1,3 +1,4 @@
+import 'package:book_reader/providers/firebase_providers.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,35 +16,41 @@ void main() => runApp(
       ),
     );
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     configSizeData(context);
 
-    return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus &&
-            currentFocus.focusedChild != null) {
-          FocusManager.instance.primaryFocus?.unfocus();
-        }
-      },
-      child: MaterialApp.router(
-        locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder,
-        title: 'BookReader',
-        theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
-          appBarTheme:
-              const AppBarTheme(color: Colors.transparent, elevation: 0),
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
-          useMaterial3: true,
-        ),
-        routerConfig: goRouter,
-      ),
-    );
+    final initializer = ref.watch(firebaseInitializer);
+
+    return initializer.maybeWhen(
+        data: (data) {
+          return GestureDetector(
+            onTap: () {
+              FocusScopeNode currentFocus = FocusScope.of(context);
+              if (!currentFocus.hasPrimaryFocus &&
+                  currentFocus.focusedChild != null) {
+                FocusManager.instance.primaryFocus?.unfocus();
+              }
+            },
+            child: MaterialApp.router(
+              locale: DevicePreview.locale(context),
+              builder: DevicePreview.appBuilder,
+              title: 'BookReader',
+              theme: ThemeData(
+                scaffoldBackgroundColor: Colors.white,
+                appBarTheme:
+                    const AppBarTheme(color: Colors.transparent, elevation: 0),
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+                useMaterial3: true,
+              ),
+              routerConfig: goRouter,
+            ),
+          );
+        },
+        orElse: () => const CircularProgressIndicator());
   }
 }
