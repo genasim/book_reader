@@ -11,6 +11,9 @@ import '../widgets/book_description.dart';
 import '../widgets/book_info.dart';
 
 class DetailsScreen extends ConsumerWidget {
+  static String get routeName => 'details';
+  static String get routePath => '/$routeName';
+
   const DetailsScreen({
     Key? key,
     required this.book,

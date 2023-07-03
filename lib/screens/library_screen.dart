@@ -9,6 +9,9 @@ import '../widgets/cards_row.dart';
 import '../widgets/library_collection.dart';
 
 class LibraryScreen extends ConsumerWidget {
+  static String get routeName => 'library';
+  static String get routePath => '/$routeName';
+
   const LibraryScreen({Key? key}) : super(key: key);
 
   @override

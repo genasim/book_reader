@@ -5,6 +5,9 @@ import 'package:flutter_svg/svg.dart';
 import '../widgets/login_form.dart';
 
 class LoginScreen extends StatelessWidget {
+  static String get routeName => 'login';
+  static String get routePath => '/$routeName';
+
   const LoginScreen({Key? key}) : super(key: key);
 
   @override

@@ -7,6 +7,9 @@ import '../size_data.dart';
 import '../widgets/cards_row.dart';
 
 class HomeScreen extends ConsumerWidget {
+  static String get routeName => 'home';
+  static String get routePath => '/';
+
   const HomeScreen({Key? key}) : super(key: key);
 
   @override

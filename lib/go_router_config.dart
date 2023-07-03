@@ -1,8 +1,8 @@
+import 'package:book_reader/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'models/book.dart';
-import 'screens/auth_screen.dart';
 import 'screens/details_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/library_screen.dart';
@@ -16,34 +16,38 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 GoRouter get goRouter {
   _goRouter ??= GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/auth',
+    initialLocation: LoginScreen.routePath,
     routes: [
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) => ScaffoldNavBar(child: child),
         routes: [
           GoRoute(
-            path: '/',
+            path: HomeScreen.routePath,
+            name: HomeScreen.routeName,
             builder: (context, state) => const HomeScreen(),
           ),
           GoRoute(
-            path: '/library',
+            path: LibraryScreen.routePath,
+            name: LibraryScreen.routeName,
             builder: (context, state) => const LibraryScreen(),
           ),
         ],
       ),
       GoRoute(
-        path: '/details',
+        path: DetailsScreen.routePath,
+        name: DetailsScreen.routeName,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) {
           assert(state.extra is Book,
-              'Extra of type [Book] must be provided when navigating to \'/details\'');
+              'Extra of type [Book] must be provided when navigating to ${DetailsScreen.routePath}');
           return DetailsScreen(book: state.extra as Book);
         },
       ),
       GoRoute(
-        path: '/auth',
-        builder: (context, state) => const AuthScreen(),
+        name: LoginScreen.routeName,
+        path: LoginScreen.routePath,
+        builder: (context, state) => const LoginScreen(),
       )
     ],
   );
