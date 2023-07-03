@@ -33,12 +33,16 @@ class ScaffoldNavBar extends StatelessWidget {
   }
 
   int _calculateSelectedIndex(BuildContext context) {
-    final String location = GoRouterState.of(context).location;
-    return switch (location) {
-      '/' => 0,
-      '/library' => 1,
-      _ => 0,
-    };
+    try {
+      final String location = GoRouterState.of(context).location;
+      return switch (location) {
+        '/' => 0,
+        '/library' => 1,
+        _ => 0,
+      };
+    } catch (e) {
+      return 0;
+    }
   }
 
   void _onItemTapped(int index, BuildContext context) {

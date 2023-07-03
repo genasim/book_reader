@@ -48,7 +48,7 @@ class HomeScreen extends ConsumerWidget {
             ),
             itemBuilder: (context) => [
               PopupMenuItem(
-                onTap: () => FirebaseAuth.instance.signOut(),
+                onTap: () async => await FirebaseAuth.instance.signOut(),
                 child: const Text('Sign out'),
               ),
               PopupMenuItem(
