@@ -1,3 +1,4 @@
+import 'package:book_reader/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -56,7 +57,8 @@ class CardsRow extends StatelessWidget {
               child: AspectRatio(
                 aspectRatio: 2 / 3,
                 child: InkWell(
-                    onTap: () => context.push('/details', extra: book),
+                    onTap: () =>
+                        context.push(DetailsScreen.routePath, extra: book),
                     child: BookCard(book: book)),
               ),
             )))

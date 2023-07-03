@@ -49,7 +49,7 @@ class LibraryScreen extends ConsumerWidget {
             ),
             itemBuilder: (context) => [
               PopupMenuItem(
-                onTap: () => ref.read(authProvider).signOut(),
+                onTap: () => ref.read(authServiceProvider).signOut(),
                 child: const Text('Sign out'),
               ),
               PopupMenuItem(

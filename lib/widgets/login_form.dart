@@ -33,9 +33,7 @@ class LoginForm extends ConsumerWidget {
         Padding(
           padding: EdgeInsets.only(bottom: defaultSize * 1.6),
           child: ElevatedButton(
-              onPressed: () {
-                ref.read(authProvider).signInAnon();
-              },
+              onPressed: () => ref.read(authServiceProvider).signInAnon(),
               child: SizedBox(
                 width: defaultSize * 8.5,
                 child: const Center(child: Text('Log in')),

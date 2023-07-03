@@ -1,15 +1,8 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:book_reader/sevices/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../firebase_options.dart';
-import '../sevices/auth.dart';
+final authServiceProvider = Provider<AuthService>((ref) => AuthService());
 
-final firebaseInitializer = FutureProvider<FirebaseApp>(
-  (ref) async => await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  ),
-);
-
-final authProvider = Provider((ref) => AuthService());
-
-final authStateProvider = StreamProvider((ref) => ref.read(authProvider).user);
+final authStateProvider =
+    StreamProvider<User?>((ref) => ref.read(authServiceProvider).user);

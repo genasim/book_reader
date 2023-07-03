@@ -7,10 +7,9 @@ import '../size_data.dart';
 import '../widgets/cards_row.dart';
 
 class HomeScreen extends ConsumerWidget {
+  const HomeScreen({super.key});
   static String get routeName => 'home';
   static String get routePath => '/';
-
-  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -49,7 +48,7 @@ class HomeScreen extends ConsumerWidget {
             ),
             itemBuilder: (context) => [
               PopupMenuItem(
-                onTap: () => ref.read(authProvider).signOut(),
+                onTap: () => ref.read(authServiceProvider).signOut(),
                 child: const Text('Sign out'),
               ),
               PopupMenuItem(

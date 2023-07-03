@@ -1,17 +1,17 @@
 import 'package:book_reader/size_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../widgets/login_form.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget {
+  const LoginScreen({super.key});
   static String get routeName => 'login';
   static String get routePath => '/$routeName';
 
-  const LoginScreen({Key? key}) : super(key: key);
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
