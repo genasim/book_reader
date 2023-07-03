@@ -1,56 +1,48 @@
-import 'package:book_reader/providers/firebase_providers.dart';
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'firebase_options.dart';
 import 'go_router_config.dart';
 import 'size_data.dart';
 
-void main() => runApp(
-      DevicePreview(
-        enabled: !kReleaseMode,
-        builder: (context) => const ProviderScope(
-          child: MyApp(),
-        ),
-      ),
-    );
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-class MyApp extends ConsumerWidget {
-  const MyApp({super.key});
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const ProviderScope(child: AppWithFirebase()));
+}
 
-  // This widget is the root of your application.
+class AppWithFirebase extends ConsumerWidget {
+  const AppWithFirebase({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     configSizeData(context);
 
-    final initializer = ref.watch(firebaseInitializer);
+    final router = ref.watch(routerProvider);
 
-    return initializer.maybeWhen(
-        data: (data) {
-          return GestureDetector(
-            onTap: () {
-              FocusScopeNode currentFocus = FocusScope.of(context);
-              if (!currentFocus.hasPrimaryFocus &&
-                  currentFocus.focusedChild != null) {
-                FocusManager.instance.primaryFocus?.unfocus();
-              }
-            },
-            child: MaterialApp.router(
-              locale: DevicePreview.locale(context),
-              builder: DevicePreview.appBuilder,
-              title: 'BookReader',
-              theme: ThemeData(
-                scaffoldBackgroundColor: Colors.white,
-                appBarTheme:
-                    const AppBarTheme(color: Colors.transparent, elevation: 0),
-                colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
-                useMaterial3: true,
-              ),
-              routerConfig: goRouter,
-            ),
-          );
-        },
-        orElse: () => const CircularProgressIndicator());
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
+      child: MaterialApp.router(
+        routeInformationParser: router.routeInformationParser,
+        routerDelegate: router.routerDelegate,
+        routeInformationProvider: router.routeInformationProvider,
+        title: 'BookReader',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme:
+              const AppBarTheme(color: Colors.transparent, elevation: 0),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+          useMaterial3: true,
+        ),
+      ),
+    );
   }
 }
