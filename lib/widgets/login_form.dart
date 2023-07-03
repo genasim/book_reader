@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../providers/firebase_providers.dart';
 import '../size_data.dart';
 
 class LoginForm extends ConsumerWidget {
@@ -33,9 +33,7 @@ class LoginForm extends ConsumerWidget {
         Padding(
           padding: EdgeInsets.only(bottom: defaultSize * 1.6),
           child: ElevatedButton(
-              onPressed: () async {
-                await FirebaseAuth.instance.signInAnonymously();
-              },
+              onPressed: () => ref.read(authServiceProvider).signInAnon(),
               child: SizedBox(
                 width: defaultSize * 8.5,
                 child: const Center(child: Text('Log in')),

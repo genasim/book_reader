@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:book_reader/providers/firebase_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,7 +9,7 @@ import '../widgets/cards_row.dart';
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
   static String get routeName => 'home';
-  static String get routeLocation => '/';
+  static String get routePath => '/';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -48,7 +48,7 @@ class HomeScreen extends ConsumerWidget {
             ),
             itemBuilder: (context) => [
               PopupMenuItem(
-                onTap: () async => await FirebaseAuth.instance.signOut(),
+                onTap: () => ref.read(authServiceProvider).signOut(),
                 child: const Text('Sign out'),
               ),
               PopupMenuItem(

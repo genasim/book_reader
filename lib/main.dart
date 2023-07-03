@@ -10,18 +10,18 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const ProviderScope(child: AppWithFirebase()));
+  runApp(const ProviderScope(child: BookReaderApp()));
 }
 
-class AppWithFirebase extends ConsumerWidget {
-  const AppWithFirebase({super.key});
+class BookReaderApp extends ConsumerWidget {
+  const BookReaderApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     configSizeData(context);
 
-    final router = ref.watch(routerProvider);
-
+    //  Add GestureDetector to implement global 'unfocus'
+    //  when tapping outside of widgets
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -31,9 +31,7 @@ class AppWithFirebase extends ConsumerWidget {
         }
       },
       child: MaterialApp.router(
-        routeInformationParser: router.routeInformationParser,
-        routerDelegate: router.routerDelegate,
-        routeInformationProvider: router.routeInformationProvider,
+        routerConfig: ref.watch(routerProvider),
         title: 'BookReader',
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,

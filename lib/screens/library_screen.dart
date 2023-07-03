@@ -1,8 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/bookmarks_provider.dart';
+import '../providers/firebase_providers.dart';
 import '../providers/library_provider.dart';
 import '../size_data.dart';
 import '../widgets/cards_row.dart';
@@ -49,7 +49,7 @@ class LibraryScreen extends ConsumerWidget {
             ),
             itemBuilder: (context) => [
               PopupMenuItem(
-                onTap: () async => await FirebaseAuth.instance.signOut(),
+                onTap: () => ref.read(authServiceProvider).signOut(),
                 child: const Text('Sign out'),
               ),
               PopupMenuItem(

@@ -8,7 +8,7 @@ import '../widgets/login_form.dart';
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
   static String get routeName => 'login';
-  static String get routeLocation => '/$routeName';
+  static String get routePath => '/$routeName';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

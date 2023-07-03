@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../screens/login_screen.dart';
 import 'models/book.dart';
 import 'providers/firebase_providers.dart';
 import 'screens/details_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/library_screen.dart';
+import 'screens/login_screen.dart';
 import 'screens/splash_screen.dart';
 import 'widgets/scaffold_navbar.dart';
 
@@ -15,20 +15,20 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 final routerProvider = Provider<GoRouter>((ref) {
-  final authState = ref.watch(authProvider);
+  final user = ref.watch(authStateProvider);
 
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: SplashPage.routeLocation,
+    initialLocation: SplashScreen.routePath,
     routes: [
       GoRoute(
-        path: SplashPage.routeLocation,
-        name: SplashPage.routeName,
+        path: SplashScreen.routePath,
+        name: SplashScreen.routeName,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => const SplashPage(),
+        builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
-        path: LoginScreen.routeLocation,
+        path: LoginScreen.routePath,
         name: LoginScreen.routeName,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const LoginScreen(),
@@ -48,7 +48,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state, child) => ScaffoldNavBar(child: child),
         routes: [
           GoRoute(
-            path: HomeScreen.routeLocation,
+            path: HomeScreen.routePath,
             name: HomeScreen.routeName,
             builder: (context, state) => const HomeScreen(),
           ),
@@ -62,23 +62,23 @@ final routerProvider = Provider<GoRouter>((ref) {
     ],
     redirect: (context, state) {
       // If our async state is loading, don't perform redirects, yet
-      if (authState.isLoading || authState.hasError) return null;
+      if (user.isLoading || user.hasError) return null;
 
       // Here we guarantee that hasData == true, i.e. we have a readable value
 
       // This has to do with how the FirebaseAuth SDK handles the "log-in" state
       // Returning `null` means "we are not authorized"
-      final isAuth = authState.valueOrNull != null;
+      final isAuth = user.valueOrNull != null;
 
-      final isSplash = state.location == SplashPage.routeLocation;
+      final isSplash = state.location == SplashScreen.routePath;
       if (isSplash) {
-        return isAuth ? HomeScreen.routeLocation : LoginScreen.routeLocation;
+        return isAuth ? HomeScreen.routePath : LoginScreen.routePath;
       }
 
-      final isLoggingIn = state.location == LoginScreen.routeLocation;
-      if (isLoggingIn) return isAuth ? HomeScreen.routeLocation : null;
+      final isLoggingIn = state.location == LoginScreen.routePath;
+      if (isLoggingIn) return isAuth ? HomeScreen.routePath : null;
 
-      return isAuth ? null : SplashPage.routeLocation;
+      return isAuth ? null : SplashScreen.routePath;
     },
   );
 });
