@@ -44,13 +44,13 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             icon: icon,
             label: label)
       ]),
-      body: isLogin ? const Login() : const Signup(),
+      body: isLogin ? const _Login() : const _Signup(),
     );
   }
 }
 
-class Signup extends StatelessWidget {
-  const Signup({Key? key}) : super(key: key);
+class _Signup extends StatelessWidget {
+  const _Signup();
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +63,8 @@ class Signup extends StatelessWidget {
   }
 }
 
-class Login extends StatelessWidget {
-  const Login({
-    super.key,
-  });
+class _Login extends StatelessWidget {
+  const _Login();
 
   @override
   Widget build(BuildContext context) {

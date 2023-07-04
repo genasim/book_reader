@@ -1,8 +1,8 @@
-import 'package:book_reader/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../models/book.dart';
+import '../screens/details_screen.dart';
 import '../size_data.dart';
 import 'book_card.dart';
 
