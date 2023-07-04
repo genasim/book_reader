@@ -7,7 +7,7 @@ import 'providers/firebase_providers.dart';
 import 'screens/details_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/library_screen.dart';
-import 'screens/login_screen.dart';
+import 'screens/auth_screen.dart';
 import 'screens/splash_screen.dart';
 import 'widgets/scaffold_navbar.dart';
 
@@ -28,10 +28,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
-        path: LoginScreen.routePath,
-        name: LoginScreen.routeName,
+        path: AuthScreen.routePath,
+        name: AuthScreen.routeName,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => const LoginScreen(),
+        builder: (context, state) => const AuthScreen(),
       ),
       GoRoute(
         path: DetailsScreen.routePath,
@@ -72,10 +72,10 @@ final routerProvider = Provider<GoRouter>((ref) {
 
       final isSplash = state.location == SplashScreen.routePath;
       if (isSplash) {
-        return isAuth ? HomeScreen.routePath : LoginScreen.routePath;
+        return isAuth ? HomeScreen.routePath : AuthScreen.routePath;
       }
 
-      final isLoggingIn = state.location == LoginScreen.routePath;
+      final isLoggingIn = state.location == AuthScreen.routePath;
       if (isLoggingIn) return isAuth ? HomeScreen.routePath : null;
 
       return isAuth ? null : SplashScreen.routePath;
