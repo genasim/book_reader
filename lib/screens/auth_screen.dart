@@ -1,4 +1,5 @@
 import 'package:book_reader/size_data.dart';
+import 'package:book_reader/widgets/forms/signup_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -53,7 +54,12 @@ class Signup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Sign up'));
+    return const Center(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: SignupForm(),
+      ),
+    );
   }
 }
 

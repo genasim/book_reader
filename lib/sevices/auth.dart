@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 class AuthService {
   late final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  //  Auth change user stream
+  /// Auth change user stream
   Stream<User?> get user => _auth.authStateChanges();
 
   /// Sign-in anonymously || @depricated TEMPORARY
@@ -19,7 +19,7 @@ class AuthService {
     }
   }
 
-  /// Register with email & password
+  /// Create user with email & password
   Future<User?> createUserEmailPassword(
       {required String email, required String pass}) async {
     try {
@@ -28,14 +28,13 @@ class AuthService {
         password: pass,
       );
       final User user = token.user!;
-
       return user;
     } catch (e) {
       return null;
     }
   }
 
-  /// Login with email & password
+  /// Login user with email & password
   Future<User?> signInEmailPassword(
       {required String email, required String pass}) async {
     try {

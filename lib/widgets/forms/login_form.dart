@@ -43,10 +43,6 @@ class LoginForm extends ConsumerWidget {
                   child: const Center(child: Text('Log in')),
                 )),
           ),
-          const Text(
-            'Sign up',
-            style: TextStyle(decoration: TextDecoration.underline),
-          ),
           SizedBox(height: defaultSize),
           const Text(
             'Forgot password?',
